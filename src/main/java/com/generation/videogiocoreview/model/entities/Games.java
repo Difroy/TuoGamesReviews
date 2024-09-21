@@ -25,9 +25,20 @@ public class Games {
 	protected String name, description;
 	protected int bestPrice;
 	AvaibleSystem[] system;
-	@OneToMany ( mappedBy = "games")
+	@OneToMany ( mappedBy = "game")
 	//@JoinColumn(name = "gameId") (Come dovrei fare per usare questo???)
-	List<Review>reviews = new ArrayList<>();
+	List<Reviews>reviews = new ArrayList<>();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -40,10 +51,10 @@ public class Games {
 	public void setName(String nome) {
 		this.name = nome;
 	}
-	public String getDescrizione() {
+	public String getDescription() {
 		return description;
 	}
-	public void setDescrizione(String descrizione) {
+	public void setDescription(String descrizione) {
 		this.description = descrizione;
 	}
 	public int getBestPrice() {
@@ -58,10 +69,10 @@ public class Games {
 	public void setSystem(AvaibleSystem[] system) {
 		this.system = system;
 	}
-	public List<Review> getReviews() {
+	public List<Reviews> getReviews() {
 		return reviews;
 	}
-	public void setReviews(List<Review> reviews) {
+	public void setReviews(List<Reviews> reviews) {
 		this.reviews = reviews;
 	}
 	
