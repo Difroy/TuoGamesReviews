@@ -1,5 +1,8 @@
 package com.generation.videogiocoreview.model.entities;
 
+import com.generation.videogiocoreview.model.dto.ReviewsDTO;
+import com.generation.videogiocoreview.model.repository.GamesRepository;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +21,14 @@ public class Reviews {
 	@ManyToOne
 	Games game;
 	
-	
+	public Reviews(ReviewsDTO dto, GamesRepository repo) {
+		  
+		this.Id=dto.getId();
+		this.title=dto.getTitle();
+		this.review=dto.getReview();
+		this.score=dto.getScore();
+		this.game = repo.findById(dto.getId()).get();
+	}
 	
 	
 	

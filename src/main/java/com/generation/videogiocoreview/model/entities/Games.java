@@ -3,6 +3,9 @@ package com.generation.videogiocoreview.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.generation.videogiocoreview.model.dto.GamesDTO;
+import com.generation.videogiocoreview.model.dto.ReviewsMapper;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,14 +33,16 @@ public class Games {
 	List<Reviews>reviews = new ArrayList<>();
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public Games (GamesDTO dto, ReviewsMapper mapper) {
+		
+		this.id = dto.getId();
+		this.name = dto.getName();
+		this.description = dto.getDescription();
+		this.bestPrice = dto.getPrice();
+		this.system = dto.getSystem();
+		this.reviews = mapper.daDTOAReview(dto.getReviewsDTO());
+		
+	}
 	
 	public int getId() {
 		return id;

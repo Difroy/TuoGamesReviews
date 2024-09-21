@@ -1,5 +1,9 @@
 package com.generation.videogiocoreview.model.repository;
 
-public class GamesRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.generation.videogiocoreview.model.entities.Games;
+
+public interface GamesRepository extends JpaRepository <Games, Integer>{
 
 }

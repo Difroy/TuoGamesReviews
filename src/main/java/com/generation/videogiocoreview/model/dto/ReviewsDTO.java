@@ -1,11 +1,25 @@
 package com.generation.videogiocoreview.model.dto;
 
+import com.generation.videogiocoreview.model.entities.Reviews;
+
+
 public class ReviewsDTO {
 	
 	protected int Id;
 	protected String title, review;
 	protected int score;
 	protected int gameId;
+	
+	
+	public ReviewsDTO(Reviews r){
+		
+		this.Id = r.getId();
+		this.title = r.getTitle();
+		this.review = r.getReview();
+		this.score = r.getScore();
+		this.gameId = r.getGame().getId();
+		
+	}
 	
 	
 	
@@ -33,6 +47,7 @@ public class ReviewsDTO {
 	public void setScore(int punteggio) {
 		this.score = punteggio;
 	}
+	
 	public int getGameId() {
 		return gameId;
 	}
@@ -40,6 +55,9 @@ public class ReviewsDTO {
 		this.gameId = giocoId;
 	}
 	
+	
+	
+
 	
 	
 

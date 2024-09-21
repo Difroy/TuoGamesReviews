@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.generation.videogiocoreview.model.entities.AvaibleSystem;
+import com.generation.videogiocoreview.model.entities.Games;
 
 public class GamesDTO {
 
@@ -14,6 +15,16 @@ public class GamesDTO {
 	List<ReviewsDTO> reviewsDTO = new ArrayList<>();
 	
 	
+	
+	public GamesDTO (Games games, ReviewsMapper mapper){
+		
+		this.Id = games.getId();
+		this.name = games.getName();
+		this.description = games.getDescription();
+		this.bestPrice = games.getBestPrice();
+		this.system = games.getSystem();
+		this.reviewsDTO = mapper.daReviewADTO(games.getReviews());	
+	}
 
 	
 	
