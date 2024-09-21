@@ -1,9 +1,13 @@
 package com.generation.videogiocoreview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -11,13 +15,20 @@ public class Games {
 
 	
 	@Id
+	//--------------------------------------------------------------------------
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//!!GeneratedValue:
+	//usata in Java con JPA (Java Persistence API) per indicare che il valore di un campo deve essere generato automaticamente. Questa annotazione è spesso usata con l'annotazione @Id per indicare che il campo è la chiave primaria dell'entità.
+	//!!strategy = GenerationType.IDENTITY:
+	//specifica che la generazione del valore deve essere gestita dal database. In altre parole, quando crei una nuova entità e la salvi nel database, il database genererà automaticamente un nuovo valore per il campo.
+	//--------------------------------------------------------------------------
 	protected int id;
 	protected String name, descrizione;
 	protected int bestPrice;
 	AvaibleSystem[] system;
-	@OneToMany
-	Review review;
+	@OneToMany ( mappedBy = "games")
+	//@JoinColumn(name = "gameId") (Come dovrei fare per usare questo???)
+	List<Review>reviews = new ArrayList<>();
 	public int getId() {
 		return id;
 	}
@@ -48,12 +59,13 @@ public class Games {
 	public void setSystem(AvaibleSystem[] system) {
 		this.system = system;
 	}
-	public Review getReview() {
-		return review;
+	public List<Review> getReviews() {
+		return reviews;
 	}
-	public void setReview(Review review) {
-		this.review = review;
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
+	
 	
 	
 }
