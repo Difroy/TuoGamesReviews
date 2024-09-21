@@ -1,4 +1,4 @@
-package com.generation.videogiocoreview;
+package com.generation.videogiocoreview.model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -23,7 +22,7 @@ public class Games {
 	//specifica che la generazione del valore deve essere gestita dal database. In altre parole, quando crei una nuova entità e la salvi nel database, il database genererà automaticamente un nuovo valore per il campo.
 	//--------------------------------------------------------------------------
 	protected int id;
-	protected String name, descrizione;
+	protected String name, description;
 	protected int bestPrice;
 	AvaibleSystem[] system;
 	@OneToMany ( mappedBy = "games")
@@ -38,20 +37,20 @@ public class Games {
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 	public String getDescrizione() {
-		return descrizione;
+		return description;
 	}
 	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+		this.description = descrizione;
 	}
 	public int getBestPrice() {
 		return bestPrice;
 	}
-	public void setBestPrice(int bestPrice) {
-		this.bestPrice = bestPrice;
+	public void setBestPrice(int migliorPrezzo) {
+		this.bestPrice = migliorPrezzo;
 	}
 	public AvaibleSystem[] getSystem() {
 		return system;

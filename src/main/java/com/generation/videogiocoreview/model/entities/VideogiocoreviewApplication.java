@@ -1,4 +1,4 @@
-package com.generation.videogiocoreview;
+package com.generation.videogiocoreview.model.entities;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.generation.videogiocoreview;
+package com.generation.videogiocoreview.model.entities;
 
 public enum AvaibleSystem {
 		PS3,
