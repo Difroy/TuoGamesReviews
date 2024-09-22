@@ -97,7 +97,7 @@ public class ReviewsAPI {
    Reviews updatedReview = revirepo.save(existingReview);
 
     // Restituisco il DTO del gioco aggiornato con status 200 OK
-    return new ResponseEntity<>(rmapper.daReviewADTO(updateReview),HttpStatus.OK);
+    return new ResponseEntity<>(rmapper.daReviewADTO(updatedReview),HttpStatus.OK);
 }
 	
 
