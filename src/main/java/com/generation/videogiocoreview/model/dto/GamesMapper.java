@@ -22,10 +22,7 @@ public class GamesMapper {
 		return res;*/
 	
 	}
-	
-	
 	public GamesDTO daGamesADTO (Games games, ReviewsMapper mapper) {
-		
 		return new GamesDTO(games, mapper);
 	}
 	

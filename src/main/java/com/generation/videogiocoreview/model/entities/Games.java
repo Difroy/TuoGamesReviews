@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.generation.videogiocoreview.model.dto.GamesDTO;
 import com.generation.videogiocoreview.model.dto.ReviewsMapper;
+import com.generation.videogiocoreview.model.dto.Validable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Games {
+public class Games implements Validable {
 
 	
 	@Id
@@ -80,7 +81,11 @@ public class Games {
 	public void setReviews(List<Reviews> reviews) {
 		this.reviews = reviews;
 	}
-	
-	
+
+	@Override
+	public boolean isValid() {
+		return name != null && description != null;
+	}
+
 	
 }
