@@ -1,12 +1,14 @@
 package com.generation.videogiocoreview.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +24,11 @@ import com.generation.videogiocoreview.model.repository.GamesRepository;
 public class GamesAPI {
 
 	@Autowired
-	GamesMapper mapper;
+	GamesMapper gmapper;
 	@Autowired
 	GamesRepository gamerepo;
 	@Autowired
-	ReviewsMapper revirepo;
+	ReviewsMapper rmapper;
 	
 	
 	//Ricordiamo che le insert arrivano da Javascript, di conseguenza le informazioni che ci arriveranno sono in DTO. Dobbiamo trasformalo da DTO a Entità per salvarlo nel DB e successivamente lo ritrasformiamo in DTO per poter fare un trasporto d'informazioni senza creare cicli.
@@ -34,14 +36,14 @@ public class GamesAPI {
 	@PostMapping
 	public GamesDTO insertGame(@RequestBody GamesDTO dto) 
 	{
-		Games g = mapper.daDTOAGames(dto);
+		Games g = gmapper.daDTOAGames(dto);
 		g = gamerepo.save(g);
-		return mapper.daGamesADTO(g,revirepo);
+		return gmapper.daGamesADTO(g);
 	}
 	
 	@GetMapping("/{id}")
 	public GamesDTO getGame(@PathVariable("id") int id){	
-		return mapper.daGamesADTO(gamerepo.findById(id) .get(),revirepo);
+		return gmapper.daGamesADTO(gamerepo.findById(id) .get());
 	//DA FARE CONTROLLI
 	}
 	
@@ -49,10 +51,36 @@ public class GamesAPI {
 	@GetMapping()
 	public List<GamesDTO> getGames(){
 		
-		List<GamesDTO>listaVuotaDTO = new ArrayList<GamesDTO>();
-		
+		//Lo faccio in questo modo perché già l'ho sviluppato nel GamesMapper
+		List<GamesDTO>listaVuotaDTO = gmapper.daGamesADTO(gamerepo.findAll());
 		return listaVuotaDTO;
+		
+		
+		
+		/*List<GamesDTO>listaVuotaDTO = new ArrayList<>();
+		for(Games singoloElementoListaPiena : gamerepo.findAll())
+			listaVuotaDTO.add(gmapper.daGamesADTO(singoloElementoListaPiena, rmapper));
+		
+		return listaVuotaDTO;*/
 	}
+	
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteGame(@PathVariable("id") int id) {
+		Games existingGame = gamerepo.findById(id).orElseThrow();
+		gamerepo.delete(existingGame);
+		return ResponseEntity.ok().build();
+	}
+	
+	
+	
+	@PutMapping("/{id}")
+	public GamesDTO updateGame(@PathVariable("id") int id, @RequestBody GamesDTO dto) {
+		Games existingGame = gmapper.daDTOAGames(dto);
+		existingGame = gamerepo.save(existingGame);
+		return gmapper.daGamesADTO(existingGame);
+	}
+	
 	
 	
 
