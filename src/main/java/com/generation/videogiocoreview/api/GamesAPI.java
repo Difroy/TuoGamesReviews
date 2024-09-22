@@ -64,7 +64,9 @@ public class GamesAPI {
 		return listaVuotaDTO;*/
 	}
 	
-
+	
+	
+/*
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteGame(@PathVariable("id") int id) {
 		Games existingGame = gamerepo.findById(id).orElseThrow();
@@ -79,7 +81,7 @@ public class GamesAPI {
 		Games existingGame = gmapper.daDTOAGames(dto);
 		existingGame = gamerepo.save(existingGame);
 		return gmapper.daGamesADTO(existingGame);
-	}
+	}*/
 	
 	
 	
